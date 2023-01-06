@@ -1,0 +1,7 @@
+* {
+  overflow-x: hidden;
+}
+
+.navbar {
+  min-height: 10vh;
+}
