@@ -28,16 +28,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  history: [
+  diary: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
+      ref: "Diary",
     },
   ],
-  highestScore: {
-    type: Number,
-    default: 0,
-  },
 });
 
 let User = mongoose.model("User", userSchema);

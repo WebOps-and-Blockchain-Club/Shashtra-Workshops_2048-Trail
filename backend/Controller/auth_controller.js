@@ -39,7 +39,7 @@ module.exports.signin = async (req, res) => {
       return res.status(200).send({
         loginStatus: true,
         error: null,
-        id: user._id,
+        userDetails: user,
         jwtToken: token,
       });
     })
@@ -47,7 +47,7 @@ module.exports.signin = async (req, res) => {
       res.status(500).send({
         loginStatus: false,
         error: e.message,
-        id: null,
+        userDetails: null,
         jwtToken: null,
       })
     );
@@ -65,7 +65,8 @@ module.exports.content = async (req, res) => {
     .catch((e) => {
       return res.status(401).send({
         message: "Unauthorized!" + e,
-        decodedId: null,
+        userDetails: null,
+        content: null,
       });
     });
 };

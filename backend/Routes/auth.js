@@ -10,6 +10,6 @@ router.post("/signup", authController.signup);
 router.get("/signin", authController.signin);
 
 // middlewares + controllers
-router.get("/jwt/content", authMiddleware.verify_jwt, authController.content);
+router.get("/content", authMiddleware.verify_jwt, authController.content);
 
 module.exports = router;

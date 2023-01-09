@@ -9,6 +9,6 @@ app.use(express.json());
 app.use(router);
 
 router.use("/auth", require("./auth"));
-router.use("/game", require("./game"));
+router.use("/diary", require("./diary"));
 
 module.exports = app;
