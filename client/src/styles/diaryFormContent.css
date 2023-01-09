@@ -1,0 +1,31 @@
+.diary-form-container {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diary-form-main {
+    width: 60vw;
+}
+
+.diary-form-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.diary-form-subheading {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+label {
+    cursor: pointer;
+    margin-bottom: -5px;
+}
+
+#upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
