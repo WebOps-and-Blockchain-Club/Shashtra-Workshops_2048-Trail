@@ -1,25 +1,28 @@
+import { useState } from "react"
+import CalendarComponent from "../components/Calendar"
 import NavigationBar from "../components/Navbar"
-import GameContent from "../components/GameContent"
-import LeaderboardContent from "../components/LeaderboardContent"
-import Footer from "../components/Footer"
+import DiaryEntryCard from "../components/DiaryEntryCard"
 import "../styles/dashboard.css"
 
+
 const Dashboard = () => {
+
+    const [Visibility, setVisibile] = useState("false")
+const setVisibility=()=>{
+ if(Visibility===true)
+ {
+    setVisibile(false);
+ }
+ else{
+    setVisibile(true);
+ }
+}
+
     return (
-        <div>
-            <NavigationBar />
-            <div className="row content">
-                <div className="col-8 game-content">
-                    <GameContent />
-                </div>
-                <div className="col-4 leaderboard-content">
-                    <LeaderboardContent />
-                </div>
-            </div>
-            <div className="history-content">
-                col
-            </div>
-            <Footer />
+        <div >
+            <NavigationBar CalenderVisibility={setVisibility} Visibility={Visibility}/>
+            <CalendarComponent CalenderVisibile={Visibility}/>
+            <DiaryEntryCard />
         </div>
     )
 }

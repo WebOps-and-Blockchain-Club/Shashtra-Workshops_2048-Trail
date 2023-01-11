@@ -1,20 +1,26 @@
-import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+  
     return (
-        <Navbar bg="primary" variant="dark">
-            <Container>
-                <Navbar.Brand href="#home">My Diary</Navbar.Brand>
-                {/* <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav> */}
-            </Container>
-        </Navbar>
+      
+        <nav className="navbar navbar-expand-lg bg-primary text-light"  data-bs-theme="dark">
+  <div className="container-fluid">
+    <a className="navbar-brand" href="/">Navbar</a>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li className="nav-item ">
+          <button className="btn btn-outline-light" onClick={props.CalenderVisibility}>{props.Visibility===true?'hide':'show'} calendar</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     )
 }
 
