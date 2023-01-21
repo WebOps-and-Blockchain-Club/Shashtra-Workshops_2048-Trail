@@ -14,6 +14,7 @@ module.exports.add_entry = async (req, res) => {
     date: req.body.date,
     title: req.body.title,
     content: req.body.content,
+    image: req.body.image,
     owner: user._id,
   })
     .then(async (entry) => {

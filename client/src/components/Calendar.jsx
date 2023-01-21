@@ -1,5 +1,5 @@
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 import React, { useState } from "react";
 
 const CalendarComponent = (props) => {
@@ -11,12 +11,14 @@ const CalendarComponent = (props) => {
 
   return (
     <>
-    {props.CalenderVisibile?
-      <Calendar className="container-fluid expand-lg text-white"
-      value={dateState}
-      onChange={changeDate}/>:null
-    }
-   </>
+      {props.CalenderVisibile ? (
+        <Calendar
+          className="container mt-3 expand-lg text-white "
+          value={dateState}
+          onChange={changeDate}
+        />
+      ) : null}
+    </>
   );
 };
 
