@@ -2,7 +2,7 @@ import './App.css';
 import { Switch, Route, Redirect } from 'wouter'
 import Dashboard from './pages/Dashboard';
 import Diary from './pages/Diary';
-import LoginPage from './components/LoginPage';
+import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './components/ProtectedRoutes';
 
 function App() {
@@ -14,14 +14,15 @@ function App() {
   //         .then(res => console.log(res))
   //         .catch(err => console.log(err))
   // }
+
   return (
     <div className="App">
       <Switch>
         {/* <Route path="/" >Home</Route> */}
         {/* <Route path="/dashboard" component={Dashboard} /> */}
-        <ProtectedRoute path="/dashboard" component={Dashboard} auth={false}/>
+        <ProtectedRoute path="/dashboard" component={Dashboard} />
         {/* <Route path="/diary" component={Diary} /> */}
-        <ProtectedRoute path="/diary" component={Diary} auth={false}/>
+        <ProtectedRoute path="/diary" component={Diary} />
         <Route path="/" component={LoginPage} />
         <Redirect to="/" />
       </Switch>

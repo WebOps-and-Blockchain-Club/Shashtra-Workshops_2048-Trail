@@ -1,44 +1,47 @@
+import { useState } from "react";
+import Button from "react-bootstrap/Button"
+
 const NavigationBar = (props) => {
+
+  const isLoggedIn = useState(localStorage.getItem("token") !== null ? true : false)[0]
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    window.location.reload()
+  }
+
+  const LogoutButton = () => {
+    return (
+      <Button variant="outline-light" onClick={handleLogout}>
+        Logout
+      </Button>
+    )
+  }
+
   return (
     <nav
       className="navbar navbar-expand-lg bg-dark text-light"
       data-bs-theme="dark"
     >
       <div className="container-fluid text-light">
-        <a className="navbar-brand text-light" href="/">
-          Navbar
+        <a className="navbar-brand text-light" href={isLoggedIn ? "/dashboard" : "/"}>
+          The Diary App
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a
-                className="nav-link active text-light"
-                aria-current="page"
-                href="/"
-              >
-                Home
-              </a>
-            </li>
             <li className="nav-item ">
-              <button
+              {/* <button
                 className="btn btn-outline-light"
                 onClick={props.CalenderVisibility}
               >
-                {props.Visibility === true ? "hide" : "show"} calendar
-              </button>
+                {props.Visibility === true ? "Hide" : "Show"} Calendar
+              </button> */}
             </li>
           </ul>
+          {isLoggedIn ? <LogoutButton /> : null}
         </div>
       </div>
     </nav>

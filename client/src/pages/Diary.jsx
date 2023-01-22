@@ -1,5 +1,5 @@
 import DiaryFormContent from "../components/DiaryFormContent"
-import Footer from "../components/Footer"
+// import Footer from "../components/Footer"
 import NavigationBar from "../components/Navbar"
 
 const Diary = () => {
@@ -7,7 +7,7 @@ const Diary = () => {
         <div>
             <NavigationBar />
             <DiaryFormContent />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

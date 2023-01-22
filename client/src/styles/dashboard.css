@@ -1,16 +1,14 @@
-.content {
-    min-height: 70vh;
+.main-container {
+    min-height: 90vh;
 }
 
-.game-content {
-    background-color: aquamarine;
-}
-
-.leaderboard-content {
-    background-color: yellowgreen
-}
-
-.history-content {
+.sub-container {
     min-height: 40vh;
-    background-color: palegreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-content {
+    max-height: 50vh;
 }

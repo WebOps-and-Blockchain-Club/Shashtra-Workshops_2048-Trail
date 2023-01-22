@@ -57,14 +57,14 @@ const DiaryFormContent = () => {
   };
 
   return (
-    <div className="diary-form-container ">
+    <div className="diary-form-container">
       <div className="my-3">
-        <span className="diary-form-heading py-3 text-light">
+        <span className="diary-form-heading py-3 ">
           Make your diary entry for today ({date})
         </span>
         <div className="diary-form-main">
           <div className="diary-form-element p-2">
-            <span className="diary-form-subheading my-3 text-light">
+            <span className="diary-form-subheading my-3 ">
               Heading
             </span>
             <input
@@ -73,7 +73,7 @@ const DiaryFormContent = () => {
             />
           </div>
           <div className="diary-form-element p-2">
-            <span className="diary-form-subheading my-3 text-light">Entry</span>
+            <span className="diary-form-subheading my-3">Entry</span>
             <textarea
               className="form-control py-2"
               rows={5}
@@ -83,7 +83,7 @@ const DiaryFormContent = () => {
           </div>
           <div className="diary-form-element p-2 row">
             <div className="col-2">
-              <button className="btn btn-outline-primary ">
+              <button className="btn btn-secondary ">
                 <label htmlFor="upload-photo">Upload Image</label>
                 <input
                   type="file"
@@ -95,7 +95,7 @@ const DiaryFormContent = () => {
             </div>
             <div className="col-2">
               <button
-                className="btn btn-outline-primary"
+                className="btn btn-secondary"
                 onClick={handleSubmit}
               >
                 Submit
