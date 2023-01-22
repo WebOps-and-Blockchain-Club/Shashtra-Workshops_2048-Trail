@@ -1,20 +1,6 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [
-      /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
-      "Invalid Phone number!",
-    ],
-  },
   email: {
     type: String,
     unique: true,

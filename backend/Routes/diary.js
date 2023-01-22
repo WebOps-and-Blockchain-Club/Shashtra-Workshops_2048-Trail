@@ -8,8 +8,8 @@ const authMiddleware = require("../Middleware/auth_middleware");
 // adds an entry
 router.post("/addentry", authMiddleware.verify_jwt, diaryController.add_entry);
 // gets all diary entries of a user
-router.get(
-  "/getentries",
+router.post(
+  "/getentry",
   authMiddleware.verify_jwt,
   diaryController.get_entries
 );

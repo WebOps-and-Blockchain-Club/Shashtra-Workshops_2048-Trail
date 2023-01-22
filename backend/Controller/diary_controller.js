@@ -2,9 +2,11 @@ const Diary = require("../Model/dairy");
 const User = require("../Model/user");
 
 module.exports.add_entry = async (req, res) => {
-  console.log("here ");
   const user = await User.findOne({ id: req.decodedId });
-  console.log("h1", user, "h1");
+  const diary = await Diary.findOne({ date: req.body.date });
+  if (diary) {
+    return res.status(200).send({ message: "Entry already exists!" })
+  };
   if (!user)
     return res.status(401).send({
       message: "Unauthorized!" + e,
@@ -13,8 +15,8 @@ module.exports.add_entry = async (req, res) => {
   await Diary.create({
     date: req.body.date,
     title: req.body.title,
-    content: req.body.content,
-    image: req.body.image,
+    content: req.body.body,
+    image: req.body.img,
     owner: user._id,
   })
     .then(async (entry) => {
@@ -35,21 +37,17 @@ module.exports.get_entries = async (req, res) => {
   await User.findOne({ id: req.decodedId })
     .populate("diary")
     .then((user) => {
-      let enteries = user.diary;
-      if (req.body.search) {
-        enteries = enteries.filter((entry) => {
-          JSON.stringify(entry).includes(req.body.search);
-        });
-      }
+      let entry = user.diary;
+      entry = entry.filter((entry) => entry.date === req.body.search);
       return res.status(200).send({
-        message: "Entries retrieved successfully!",
-        entriesRetrived: enteries,
+        message: "Entry retrieved successfully!",
+        entryRetrived: entry,
       });
     })
     .catch((e) => {
       return res.status(500).send({
         message: "Error retrieving entries: " + e,
-        entriesRetrived: null,
+        entryRetrived: null,
       });
     });
 };

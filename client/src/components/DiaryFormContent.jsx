@@ -15,7 +15,7 @@ const DiaryFormContent = () => {
 
   const handleSubmit = () => {
     if (title === "" || body === "")
-      alert("One of the fields is empty. Please enter them.");
+      alert("Atleast one of the fields is empty. Please enter them.");
     else {
       const diaryEntry = {
         date: date,
@@ -23,13 +23,19 @@ const DiaryFormContent = () => {
         body: body,
         img: imgSrc,
       };
-      console.log(diaryEntry);
-      // fetch("http://localhost:8000/newEntry", {
-      //     method: "post",
-      //     body: diaryEntry
-      // })
-      //     .then(res => console.log(res))
-      //     .catch(err => console.log(err))
+      fetch("http://localhost:8000/diary/addEntry", {
+        method: "post",
+        body: JSON.stringify(diaryEntry),
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": localStorage.getItem("token")
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.message)
+        })
+        .catch(err => alert("Error: Cannot add entry"))
     }
   };
   const handleUpload = (e) => {

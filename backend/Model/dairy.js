@@ -4,7 +4,7 @@ const diarySchema = new mongoose.Schema({
   date: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
-  imageLink:{type: String , required:false},
+  image:{type: String , required:false},
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 

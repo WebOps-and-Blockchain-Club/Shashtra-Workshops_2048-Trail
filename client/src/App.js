@@ -6,22 +6,10 @@ import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './components/ProtectedRoutes';
 
 function App() {
-  // setAuth=()=>{
-  //    fetch("http://localhost:8000/auth/signin", {
-  //         method: "get",
-  //         body: Auth,
-  //     })
-  //         .then(res => console.log(res))
-  //         .catch(err => console.log(err))
-  // }
-
   return (
     <div className="App">
       <Switch>
-        {/* <Route path="/" >Home</Route> */}
-        {/* <Route path="/dashboard" component={Dashboard} /> */}
         <ProtectedRoute path="/dashboard" component={Dashboard} />
-        {/* <Route path="/diary" component={Diary} /> */}
         <ProtectedRoute path="/diary" component={Diary} />
         <Route path="/" component={LoginPage} />
         <Redirect to="/" />

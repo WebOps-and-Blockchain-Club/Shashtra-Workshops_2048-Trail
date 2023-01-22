@@ -33,12 +33,6 @@ const NavigationBar = (props) => {
         <div className="collapse navbar-collapse" id="navbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item ">
-              {/* <button
-                className="btn btn-outline-light"
-                onClick={props.CalenderVisibility}
-              >
-                {props.Visibility === true ? "Hide" : "Show"} Calendar
-              </button> */}
             </li>
           </ul>
           {isLoggedIn ? <LogoutButton /> : null}

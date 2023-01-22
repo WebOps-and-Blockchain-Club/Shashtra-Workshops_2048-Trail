@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 
 module.exports.verify_jwt = (req, res, next) => {
   let token = req.headers["x-access-token"];
-  console.log(token);
   if (!token) {
     return res.status(403).send({
       message: "No token provided!",
@@ -15,7 +14,6 @@ module.exports.verify_jwt = (req, res, next) => {
         decodedId: null,
       });
     }
-    console.log(decoded);
 
     req.decodedId = decoded._id;
     return next();

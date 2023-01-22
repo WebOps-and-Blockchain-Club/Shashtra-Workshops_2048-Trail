@@ -18,13 +18,14 @@ const Dashboard = () => {
   // };
 
   const [show, setShow] = useState(false);
+  const [modalContent, setModalContent] = useState({ content: [], message: "" });
   const navigate = useLocation()[1]
 
   return (
     <div>
       <NavigationBar
-        // CalenderVisibility={setVisibility}
-        // Visibility={Visibility}
+      // CalenderVisibility={setVisibility}
+      // Visibility={Visibility}
       />
       <div className="main-container">
         <div className="row sub-container">
@@ -39,9 +40,11 @@ const Dashboard = () => {
         <div className="calendar-content">
           <CalendarComponent
             // CalenderVisibile={Visibility} 
-            setModalShow={setShow} />
+            setModalShow={setShow}
+            setModalContent={setModalContent}
+          />
         </div>
-        <DiaryModal showModal={show} setModalShow={setShow} />
+        <DiaryModal showModal={show} setModalShow={setShow} entry={modalContent} setModalContent={setModalContent} />
       </div>
     </div>
   );

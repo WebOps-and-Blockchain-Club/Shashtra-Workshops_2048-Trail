@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "wouter";
 import NavigationBar from "../components/Navbar";
 
 function LoginPage() {
 
   const navigate = useLocation()[1]
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-  const handleSubmit = () => {
-    localStorage.setItem("token", "token");
-    navigate("/dashboard")
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (email === "" || password === "")
+      return alert("Please fill all the fields")
+    const data = {
+      email: email,
+      password: password
+    }
+    fetch("http://localhost:8000/auth/signin", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        localStorage.setItem("token", data.jwtToken);
+        navigate("/dashboard")
+      })
+      .catch(err => alert("Error: Cannot login"))
   }
 
   return (
@@ -43,6 +63,7 @@ function LoginPage() {
                     className="form-control rounded"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <div id="emailHelp" className="form-text text-secondary">
                     We'll never share your email with anyone else.
@@ -56,6 +77,7 @@ function LoginPage() {
                     type="password"
                     className="form-control"
                     id="exampleInputPassword1"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <button type="submit" className="btn btn-secondary" onClick={handleSubmit}>
