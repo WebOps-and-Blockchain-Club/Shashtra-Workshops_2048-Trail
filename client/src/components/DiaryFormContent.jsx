@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import "../styles/diaryFormContent.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const DiaryFormContent = () => {
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [imgSrc, setImgSrc] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const dateArr = new Date().toDateString().split(" ");
@@ -28,17 +30,18 @@ const DiaryFormContent = () => {
         body: JSON.stringify(diaryEntry),
         headers: {
           "Content-Type": "application/json",
-          "x-access-token": localStorage.getItem("token")
-        }
+          "x-access-token": localStorage.getItem("token"),
+        },
       })
-        .then(res => res.json())
-        .then(data => {
-          alert(data.message)
+        .then((res) => res.json())
+        .then((data) => {
+          alert(data.message);
         })
-        .catch(err => alert("Error: Cannot add entry"))
+        .catch((err) => alert("Error: Cannot add entry"));
     }
   };
   const handleUpload = (e) => {
+    setLoading(true);
     const file = e.target.files[0];
     const fileExtension = file.name.split(".")[1];
     if (
@@ -54,7 +57,10 @@ const DiaryFormContent = () => {
         method: "post",
         body: imgData,
       })
-        .then((res) => res.json())
+        .then((res) => {
+          setLoading(false);
+          return res.json();
+        })
         .then((data) => setImgSrc(data.url))
         .catch((err) => alert("Error in uploading image. Please try again"));
     } else {
@@ -70,9 +76,7 @@ const DiaryFormContent = () => {
         </span>
         <div className="diary-form-main">
           <div className="diary-form-element p-2">
-            <span className="diary-form-subheading my-3 ">
-              Heading
-            </span>
+            <span className="diary-form-subheading my-3 ">Heading</span>
             <input
               className="form-control py-2"
               onChange={(e) => setTitle(e.target.value)}
@@ -100,17 +104,28 @@ const DiaryFormContent = () => {
               </button>
             </div>
             <div className="col-2">
-              <button
-                className="btn btn-secondary"
-                onClick={handleSubmit}
-              >
+              <button className="btn btn-secondary" onClick={handleSubmit}>
                 Submit
               </button>
             </div>
           </div>
         </div>
         <div className="text-center my-3">
-          <img src={imgSrc} alt="" width="150px" />
+          {loading ? (
+            <div className="container ">
+              <ScaleLoader
+                loading={loading}
+                size={30}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+              <p>
+                <h2>Your image is being uploaded!</h2>
+              </p>
+            </div>
+          ) : (
+            <img src={imgSrc} alt="" width="150px" />
+          )}
         </div>
       </div>
     </div>
