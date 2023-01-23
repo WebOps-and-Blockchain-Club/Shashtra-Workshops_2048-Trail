@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Quote = () => {
   useEffect(() => {
     quoteChange();
-  });
+  }, []);
 
   const [quote, setQuote] = useState("demo quote");
 
